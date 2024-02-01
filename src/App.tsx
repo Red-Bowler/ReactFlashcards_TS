@@ -1,6 +1,6 @@
 import "./App.css";
-// import Header from "./components/Header/Header.js";
-// import Main from "./components/Main.js";
+import Header from "./components/Header/Header";
+import Main from "./components/Main";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import { AppProvider } from "./context/AppContext";
 import svg from "./svg/cherry-blossom-petal.svg";
@@ -36,9 +36,9 @@ function App() {
     return (
         <AppProvider>
             <div className="App">
-                {/* <Header /> */}
+                <Header />
                 {/* <hr style={{ margin: 0 }}></hr> */}
-                {/* <Main /> */}
+                <Main />
                 <div className="divider">
                     <img className="logo" src={svg}></img>
                 </div>

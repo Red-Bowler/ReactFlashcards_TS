@@ -1,16 +1,18 @@
 //el  orden de los objetos es como apareceran en la pagina
+export type TermType = {
+    id: number;
+    term: string;
+    extra: string;
+    answer: string;
+};
+
 export type LectureType = {
-    lectureId: string;
+    lectureId:number
     name: string;
-    termList: {
-        id: number;
-        term: string;
-        extra: string;
-        answer: string;
-    }[];
+    termList: TermType[];
     testId?: undefined;
 } | {
-    lectureId: string;
+    lectureId: number;
     name: string;
     testId: string;
     termList: {
@@ -23,7 +25,7 @@ export type LectureType = {
 
 export const lectures: LectureType[] = [
     {
-        lectureId: "711",
+        lectureId: 711,
         name: "Frases Tour",
         termList: [
             {
@@ -354,7 +356,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "710",
+        lectureId: 710,
         name: "Años, Meses, Dias",
         termList: [
             { id: 0, term: "ねん", extra: "Nen", answer: "Año" },
@@ -566,7 +568,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "709",
+        lectureId: 709,
         name: "Palabras Numeros",
         termList: [
             {
@@ -761,7 +763,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "708",
+        lectureId: 708,
         name: "Palabras Tour Basico 3",
         termList: [
             { id: 0, term: "ひだり", extra: "Hidari", answer: "Izquierda" },
@@ -1154,7 +1156,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "707",
+        lectureId: 707,
         name: "Verbos Tour Basico 2",
         termList: [
             {
@@ -1442,7 +1444,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "706",
+        lectureId: 706,
         name: "Verbos Tour Basico 1",
         termList: [
             {
@@ -1760,7 +1762,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "705",
+        lectureId: 705,
         name: "Adjetivos-Na Tour Basico",
         termList: [
             {
@@ -1955,7 +1957,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "704",
+        lectureId: 704,
         name: "Adjetivos-I Tour Basico",
         termList: [
             {
@@ -2231,7 +2233,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "703",
+        lectureId: 703,
         name: "Palabras Tour Basico 2",
         termList: [
             {
@@ -2518,7 +2520,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "702",
+        lectureId: 702,
         name: "Palabras Tour basico",
         termList: [
             {
@@ -2876,7 +2878,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "701",
+        lectureId: 701,
         name: "Palabras Tour",
         termList: [
             { id: 0, term: "ぞう", extra: "像", answer: "Estatua" },
@@ -3081,7 +3083,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "501",
+        lectureId: 501,
         name: "Set 1 Mondai No Nai",
         termList: [
             {
@@ -3257,7 +3259,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "601",
+        lectureId: 601,
         name: "Set 1 Dr Stone ",
         termList: [
             { id: 0, term: "かがく", extra: "科学", answer: "Ciencia" },
@@ -3391,7 +3393,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "1",
+        lectureId: 1,
         name: "Leccion 1 Minna",
         testId: "3",
         termList: [
@@ -3609,7 +3611,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "2",
+        lectureId: 2,
         name: "Leccion 2 Minna",
         termList: [
             { id: 0, term: "これ kore", extra: "", answer: "Este, Esta, Esto" },
@@ -3865,7 +3867,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "3",
+        lectureId: 3,
         name: "Leccion 3 Minna",
         termList: [
             {
@@ -4034,7 +4036,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "4",
+        lectureId: 4,
         name: "Leccion 4 Minna",
         termList: [
             {
@@ -4391,7 +4393,7 @@ export const lectures: LectureType[] = [
         ],
     },
     {
-        lectureId: "5",
+        lectureId: 5,
         name: "Leccion 5 Minna",
         termList: [
             {

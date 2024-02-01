@@ -5,7 +5,7 @@ import { LectureType, lectures } from "../data/lectures";
 //     [key: number]?: {[key: number]: any},
 //     stickers: {[key: number]: any}
 // };
-type ProgressType = any; // TODO define type
+export type ProgressType = any; // TODO define type
 
 type StateType = {
     init: Boolean, //true despues de haber intentado conectarse a cognito
@@ -21,7 +21,7 @@ type StateType = {
         userName: String,
         currentProgress: ProgressType | null,
     },
-    appState: { currentScreen: String, currentLecture: String | null, lastScreen: String | null }, //currentLecture es el id
+    appState: { currentScreen: String, currentLecture: number | null, lastScreen: String | null }, //currentLecture es el id
     needToSave: Boolean,
     isTakingTest: Boolean,
     savedTest: Boolean,
