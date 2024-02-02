@@ -1,6 +1,5 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { ProgressType } from "../context/AppContext";
-import { SignUpCommandOutput } from "@aws-sdk/client-cognito-identity-provider";
 
 let URL = "https://api.owaruuu.xyz";
 // URL = "http://localhost:3003";
@@ -23,7 +22,7 @@ export const connectCognito = async () => {
     }
 };
 
-export const confirmUser = async (email: String, code: String) => {
+export const confirmUser = async (email: string, code: string) => {
     try {
         const response = await api.post(`${URL}/confirmUser`, { email, code });
 
@@ -33,7 +32,7 @@ export const confirmUser = async (email: String, code: String) => {
     }
 };
 
-export const registerUser = async (email: String, password: String) => {
+export const registerUser = async (email: string, password: string) => {
     try {
         const response = await api.post(`${URL}/register`, {
             email,
@@ -47,7 +46,7 @@ export const registerUser = async (email: String, password: String) => {
 };
 
 //revisa si el usuario existe en el userpool de cognito
-export const aunthenticateUser = async (email: String, password: String) => {
+export const aunthenticateUser = async (email: string, password: string) => {
     try {
         const response = await api.post(`${URL}/login`, {
             email,
@@ -72,7 +71,7 @@ export const logoutUser = async () => {
 
 //gets the user progress from the db using his id
 //returns the progress string or
-export const getUserProgress = async (id: String) => {
+export const getUserProgress = async (id: string) => {
     try {
         const response = await api.post(`${URL}/progress`, {
             id,
@@ -130,7 +129,7 @@ export const quickScan = async () => {
     }
 };
 
-export const getExtraPerms = async (email: String) => {
+export const getExtraPerms = async (email: string) => {
     try {
         const response = await api.post(`${URL}/permissions`, { email });
         return response;

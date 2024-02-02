@@ -5,7 +5,7 @@ import { tests } from "../data/tests";
 import { HiClipboardDocumentList } from "react-icons/hi2";
 import { LectureType } from "../data/lectures";
 
-const LectureButton = (props: { id: number, title: String, amount: number, lecture: LectureType }) => {
+const LectureButton = (props: { id: number, title: string, amount: number, lecture: LectureType }) => {
     const [ context, dispatch ]= useContext(AppContext);
 
     const loaded = context.loaded;

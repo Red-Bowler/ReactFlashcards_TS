@@ -1,6 +1,6 @@
 import Dropdown from "react-bootstrap/Dropdown";
 
-function UserDropdown(props: { username: String }) {
+function UserDropdown(props: { username: string }) {
     const handleLogout = () => {
         console.log("log out");
     };

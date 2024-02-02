@@ -14,24 +14,24 @@ type StateType = {
     serverError: Boolean, //para fallas con mi server de Render.com
     loaded: Boolean,
     loggedIn: Boolean, //true si ya confirme que tengo tokens validos
-    loginControlErrorMessage: String,
+    loginControlErrorMessage: string,
     lectures: LectureType[],
     gotLectures: Boolean,
     user: {
-        userName: String,
+        userName: string,
         currentProgress: ProgressType | null,
     },
-    appState: { currentScreen: String, currentLecture: number | null, lastScreen: String | null }, //currentLecture es el id
+    appState: { currentScreen: string, currentLecture: number | null, lastScreen: string | null }, //currentLecture es el id
     needToSave: Boolean,
     isTakingTest: Boolean,
     savedTest: Boolean,
     saveError: Boolean,
-    saveInfoMessage: String,
+    saveInfoMessage: string,
     dbError: Boolean,
 };
 
 type ActionType = {
-    type: String, 
+    type: string, 
     payload: any
 };
 

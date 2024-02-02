@@ -5,7 +5,7 @@ import { lectures } from "../../data/lectures";
 import Spinner from "react-bootstrap/Spinner";
 import LogoutModal from "./LogoutModal";
 
-const LoginControls = (props: { userName: String, errorMsg: String}) => {
+const LoginControls = (props: { userName: string, errorMsg: string}) => {
     const [ context, dispatch ] = useContext(AppContext);
     
     const isTakingTest = context.isTakingTest;

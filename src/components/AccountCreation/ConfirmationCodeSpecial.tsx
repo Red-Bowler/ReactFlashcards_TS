@@ -4,7 +4,7 @@ import { confirmUser } from "../../aws/aws";
 import Spinner from "react-bootstrap/Spinner";
 import { AxiosError } from "axios";
 
-const ConfirmationCodeSpecial = (props: { blocked?: Boolean, title: String }) => {
+const ConfirmationCodeSpecial = (props: { blocked?: Boolean, title: string }) => {
     const [ context, dispatch ] = useContext(AppContext);
     const [formData, setFormData] = useState({
         email: context.user.userName,
