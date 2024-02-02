@@ -1,17 +1,16 @@
 import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../../context/AppContext";
-// import TermCard from "./TermCard";
-// import DisappearingCard from "./DisappearingCard";
-// import LearnPanel from "./LearnPanel";
-import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
+import TermCard from "./TermCard";
+import DisappearingCard from "./DisappearingCard";
+import LearnPanel from "./LearnPanel";
 import { BiSolidLeftArrow } from "react-icons/bi";
 import { BiSolidRightArrow } from "react-icons/bi";
-// import { lectures } from "../../data/lectures";
 import { shuffleArray } from "../../utils/utils";
-// import OptionsModal from "./OptionsModal";
-// import NextRedTermButton from "./NextRedTermButton";
+import OptionsModal from "./OptionsModal";
+import NextRedTermButton from "./NextRedTermButton";
 import DismissableBanner from "../Misc/DismissableBanner";
 import { LectureType, TermType } from "../../data/lectures";
+import { JSX } from "react/jsx-runtime";
 
 const LearnScreen = (props: { isReview?: boolean }) => {
     const [ context, dispatch ] = useContext(AppContext);
@@ -25,84 +24,84 @@ const LearnScreen = (props: { isReview?: boolean }) => {
     );
 
     const [lecture, setLecture] = useState(currentLecture as LectureType);
-    const [originalTerms, setOriginalTerms] = useState(currentLecture?.termList);
+    const [originalTerms, setOriginalTerms] = useState(currentLecture?.termList as TermType[]);
     const [terms, setTerms] = useState(currentLecture?.termList as TermType[]);
     const [index, setIndex] = useState(0);
     const [showAnswer, setShowAnswer] = useState(false);
     const [showModal, setShowModal] = useState(false);
-    const [disappearingCards, setDisappearingCards] = useState([]);
+    const [disappearingCards, setDisappearingCards] = useState<JSX.Element[]>([]);
     const [blocked, setBlocked] = useState(false);
     const [flip, setFlip] = useState(false);
     const [random, setRandom] = useState(false);
 
-    // const removeDisappearingCard = () => {
-    //     const now = new Date().getTime();
+    const removeDisappearingCard = () => {
+        const now = new Date().getTime();
 
-    //     setDisappearingCards((prevCards) => {
-    //         return prevCards.filter((card) => {
-    //             const diff = now - card.props.timeStamp;
-    //             return diff < 299;
-    //         });
-    //     });
-    // };
+        setDisappearingCards((prevCards) => {
+            return prevCards.filter((card) => {
+                const diff = now - card.props.timeStamp;
+                return diff < 299;
+            });
+        });
+    };
 
-    // const goBack = () => {
-    //     setShowAnswer(false);
-    //     setBlocked(false);
+    const goBack = () => {
+        setShowAnswer(false);
+        setBlocked(false);
 
-    //     const now = new Date().getTime();
-    //     const uniqueKey = `${index}-${now}`;
+        const now = new Date().getTime();
+        const uniqueKey = `${index}-${now}`;
 
-    //     setDisappearingCards([
-    //         <DisappearingCard
-    //             key={uniqueKey}
-    //             terms={terms}
-    //             index={index}
-    //             id={uniqueKey}
-    //             timeStamp={now}
-    //             showAnswer={showAnswer}
-    //             killFunc={() => removeDisappearingCard()}
-    //             direction={" disappear-right"}
-    //             flipped={flip}
-    //         />,
-    //         ...disappearingCards,
-    //     ]);
+        setDisappearingCards([
+            <DisappearingCard
+                key={uniqueKey}
+                terms={terms}
+                index={index}
+                // id={uniqueKey}
+                // timeStamp={now}
+                showAnswer={showAnswer}
+                killFunc={() => removeDisappearingCard()}
+                direction={" disappear-right"}
+                flipped={flip}
+            />,
+            ...disappearingCards,
+        ]);
 
-    //     if (index - 1 < 0) {
-    //         setIndex(lecture.termList.length - 1);
-    //     } else {
-    //         setIndex(index - 1);
-    //     }
-    // };
+        if (index - 1 < 0) {
+            setIndex(lecture.termList.length - 1);
+        } else {
+            setIndex(index - 1);
+        }
+    };
 
-    // const goForward = () => {
-    //     setShowAnswer(false);
-    //     setBlocked(false);
+    const goForward = () => {
+        setShowAnswer(false);
+        setBlocked(false);
 
-    //     const now = new Date().getTime();
-    //     const uniqueKey = `${index}-${now}`;
+        const now = new Date().getTime();
+        const uniqueKey = `${index}-${now}`;
 
-    //     setDisappearingCards([
-    //         <DisappearingCard
-    //             key={uniqueKey}
-    //             terms={terms}
-    //             index={index}
-    //             id={uniqueKey}
-    //             timeStamp={now}
-    //             showAnswer={showAnswer}
-    //             killFunc={() => removeDisappearingCard()}
-    //             direction={" disappear-left"}
-    //             flipped={flip}
-    //         />,
-    //         ...disappearingCards,
-    //     ]);
+        setDisappearingCards([
+            <DisappearingCard
+                key={uniqueKey}
+                terms={terms}
+                index={index}
+                // id={uniqueKey}
+                // timeStamp={now}
+                showAnswer={showAnswer}
+                killFunc={() => removeDisappearingCard()}
+                direction={" disappear-left"}
+                flipped={flip}
+            />,
+            ...disappearingCards,
+        ]);
 
-    //     if (index + 1 > lecture.termList.length - 1) {
-    //         setIndex(0);
-    //     } else {
-    //         setIndex(index + 1);
-    //     }
-    // };
+        if (index + 1 > lecture.termList.length - 1) {
+            setIndex(0);
+        } else {
+            setIndex(index + 1);
+        }
+    };
 
     const findNextRed = () => {
         const currentLectureProgress = user.currentProgress[lecture.lectureId];
@@ -130,36 +129,36 @@ const LearnScreen = (props: { isReview?: boolean }) => {
         return -1;
     };
 
-    // const handleNextRedClick = () => {
-    //     const nextIndex = findNextRed();
+    const handleNextRedClick = () => {
+        const nextIndex = findNextRed();
 
-    //     if (nextIndex === -1) {
-    //         return alert("No red term found.");
-    //     }
+        if (nextIndex === -1) {
+            return alert("No red term found.");
+        }
 
-    //     setShowAnswer(false);
-    //     setBlocked(false);
+        setShowAnswer(false);
+        setBlocked(false);
 
-    //     const now = new Date().getTime();
-    //     const uniqueKey = `${index}-${now}`;
+        const now = new Date().getTime();
+        const uniqueKey = `${index}-${now}`;
 
-    //     setDisappearingCards([
-    //         <DisappearingCard
-    //             key={uniqueKey}
-    //             terms={terms}
-    //             index={index}
-    //             id={uniqueKey}
-    //             timeStamp={now}
-    //             showAnswer={showAnswer}
-    //             killFunc={() => removeDisappearingCard()}
-    //             direction={" disappear-left"}
-    //             flipped={flip}
-    //         />,
-    //         ...disappearingCards,
-    //     ]);
+        setDisappearingCards([
+            <DisappearingCard
+                key={uniqueKey}
+                terms={terms}
+                index={index}
+                // id={uniqueKey}
+                // timeStamp={now}
+                showAnswer={showAnswer}
+                killFunc={() => removeDisappearingCard()}
+                direction={" disappear-left"}
+                flipped={flip}
+            />,
+            ...disappearingCards,
+        ]);
 
-    //     setIndex(nextIndex);
-    // };
+        setIndex(nextIndex);
+    };
 
     const handleClick = () => {
         setShowAnswer((prevState) => !prevState);
@@ -195,80 +194,80 @@ const LearnScreen = (props: { isReview?: boolean }) => {
         setShowModal(state);
     };
 
-    // const handleSwitchChange = (input) => {
-    //     if (input === 0) {
-    //         //si es el flip
-    //         setFlip((prev) => !prev);
-    //     } else {
-    //         //si es el random
-    //         setRandom((prev) => !prev);
-    //     }
+    const handleSwitchChange = (input: number) => {
+        if (input === 0) {
+            //si es el flip
+            setFlip((prev) => !prev);
+        } else {
+            //si es el random
+            setRandom((prev) => !prev);
+        }
 
-    //     setIndex(0);
-    // };
+        setIndex(0);
+    };
 
-    // useEffect(() => {
-    //     if (blocked) {
-    //         const timer = setTimeout(() => {
-    //             goForward();
-    //             setBlocked(false);
-    //             // }
-    //         }, 1000);
-    //         return () => clearTimeout(timer);
-    //     }
-    // }, [blocked]);
+    useEffect(() => {
+        if (blocked) {
+            const timer = setTimeout(() => {
+                goForward();
+                setBlocked(false);
+                // }
+            }, 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [blocked]);
 
-    // useEffect(() => {
-    //     if (random) {
-    //         //shuffle array
-    //         let randomTermList = [];
-    //         //deep copy la leccion
-    //         randomTermList = JSON.parse(JSON.stringify(terms));
+    useEffect(() => {
+        if (random) {
+            //shuffle array
+            let randomTermList = [];
+            //deep copy la leccion
+            randomTermList = JSON.parse(JSON.stringify(terms));
 
-    //         //randomiza and set
-    //         randomTermList = shuffleArray(randomTermList);
+            //randomiza and set
+            randomTermList = shuffleArray(randomTermList);
 
-    //         setTerms(randomTermList);
-    //     } else {
-    //         //return to original
-    //         setTerms(originalTerms);
-    //     }
-    // }, [random]);
+            setTerms(randomTermList);
+        } else {
+            //return to original
+            setTerms(originalTerms);
+        }
+    }, [random]);
 
-    // const populateProgressCells = () => {
-    //     let firstHalf = [],
-    //         secondHalf = [];
+    const populateProgressCells = () => {
+        let firstHalf: JSX.Element[] = [];
+        let secondHalf: JSX.Element[] = [];
 
-    //     terms.map((term, termIndex) => {
-    //         let classNames = "progressBarItem";
-    //         const termId = flip ? "j" + term.id : term.id;
+        terms.map((term, termIndex) => {
+            let classNames = "progressBarItem";
+            const termId = flip ? "j" + term.id : term.id;
 
-    //         const termState =
-    //             user.currentProgress?.[lecture.lectureId]?.[termId];
+            const termState =
+                user.currentProgress?.[lecture.lectureId]?.[termId];
 
-    //         if (termState) {
-    //             classNames += ` ${termState}`;
-    //         }
+            if (termState) {
+                classNames += ` ${termState}`;
+            }
 
-    //         if (termIndex == index) {
-    //             classNames += " activeItem";
-    //         }
+            if (termIndex == index) {
+                classNames += " activeItem";
+            }
 
-    //         if (termIndex > terms.length / 2) {
-    //             secondHalf.push(
-    //                 <div key={term.id} className={classNames}></div>
-    //             );
-    //         } else {
-    //             firstHalf.push(
-    //                 <div key={term.id} className={classNames}></div>
-    //             );
-    //         }
-    //     });
+            if (termIndex > terms.length / 2) {
+                secondHalf.push(
+                    <div key={term.id} className={classNames}></div>
+                );
+            } else {
+                firstHalf.push(
+                    <div key={term.id} className={classNames}></div>
+                );
+            }
+        });
 
-    //     return [firstHalf, secondHalf];
-    // };
+        return [firstHalf, secondHalf];
+    };
 
-    // const progressCells = populateProgressCells();
+    const progressCells = populateProgressCells();
 
     const learnButtons = [
         {
@@ -285,7 +284,7 @@ const LearnScreen = (props: { isReview?: boolean }) => {
 
     return (
         <div className="learnScreen">
-            {/* <OptionsModal
+            <OptionsModal
                 visible={showModal}
                 hideFunc={() => handleOptionsButtonClick(false)}
                 handleFlip={() => handleSwitchChange(0)}
@@ -372,7 +371,7 @@ const LearnScreen = (props: { isReview?: boolean }) => {
                 ""
             ) : (
                 <NextRedTermButton func={handleNextRedClick} />
-            )} */}
+            )}
         </div>
     );
 };

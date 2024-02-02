@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import LectureScreenButtons from "./LectureScreenButtons";
 import BackToTopButton from "../Buttons/BackToTopButton";
-// import { lectures } from "../../data/lectures";
 import svg from "../../svg/cherry-blossom-petal.svg";
 import DismissableBanner from "../Misc/DismissableBanner";
 import { LectureType } from "../../data/lectures";

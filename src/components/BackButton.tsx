@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
-const BackButton = (props: { options: { currentScreen: string, currentLecture: null } }) => {
+const BackButton = (props: { options: { currentScreen: string, currentLecture?: null } }) => {
     const [ _, dispatch ] = useContext(AppContext);
 
     return (

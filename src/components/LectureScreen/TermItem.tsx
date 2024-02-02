@@ -1,4 +1,4 @@
-import { TermType } from "../../data/lectures";
+
 
 const TermItem = (props: { extra: string, term: string, answer: string }) => {
     const term = () => {
