@@ -1,4 +1,12 @@
 
+export type AnswerSet = { id: number, phrase: string }[];
+
+export type MondaiItem = Array<string | AnswerSet>;
+
+export type DragSet = { id: number, drag: string }[];
+
+export type DnDItem = Array<string | DragSet>;
+
 export type Test = {
     version: string,
     mondaiTitle: string,
@@ -7,8 +15,8 @@ export type Test = {
     dragOptions: {
         quantity: number,
     },
-    mondai: Record<string, any[]>,
-    dragDrop: any[],
+    mondai: Record<string, MondaiItem[]>,
+    dragDrop: DnDItem[],
     manga?: {}
 };
 

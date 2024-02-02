@@ -15,12 +15,7 @@ export type LectureType = {
     lectureId: number;
     name: string;
     testId: string;
-    termList: {
-        id: number;
-        term: string;
-        extra: string;
-        answer: string;
-    }[];
+    termList: TermType[];
 }
 
 export const lectures: LectureType[] = [
